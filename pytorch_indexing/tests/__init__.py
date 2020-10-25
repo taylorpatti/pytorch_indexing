@@ -1,1 +1,3 @@
-from .test_compare_all_elements import test_tensorA_equal_tensorB_data_split1
+from .test_compare_all_elements import *
+
+unittest.main
