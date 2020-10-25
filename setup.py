@@ -1,6 +1,6 @@
 from setuptools import setup
 
-setup(name='pytorch_masks',
+setup(name='pytorch_indexing',
       version='0.1',
       description='Functions for efficient, large-scale, elementwise tensor-tensor comparisons with PyTorch Autograd support.',
       url='https://github.com/taylorpatti/pytorch_masks',
