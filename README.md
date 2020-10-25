@@ -19,6 +19,7 @@ def compare_all_elements(tensorA, tensorB, max_val, data_split=1):
 
 For example, in order to find the indices of matching values (as used in the torch_sparse sparse-sparse matrix multiplication function "spspmm"):
 
+'''
 input:
 tensorA = torch.tensor([0, 1, 2, 3, 2])
 tensorB = torch.tensor([2, 3, 0, 0])
@@ -27,10 +28,11 @@ indsA, indsB = pytorch_indexing.compare_all_elements(tensorA, tensorB, 3)
 output:
 tensor([2, 4, 3, 0, 0])
 tensor([0, 0, 1, 2, 3])
-
+'''
 
 Alternatively, we can transform our tensors in order to get the indices of elements that together uphold a different condtion. For example: tensorA + tensorB == 10
 
+'''
 input:
 tensorA = torch.tensor([0, 20, 15, 17, 5])
 tensorB = torch.tensor([-5, -10, 4, -3])
@@ -43,4 +45,4 @@ indsA, indsB = pytorch_indexing.compare_all_elements(tempA, tempB, 10)
 output:
 tensor([2, 1])
 tensor([0, 1])
-
+'''
