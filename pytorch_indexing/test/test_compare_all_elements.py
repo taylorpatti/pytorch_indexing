@@ -37,6 +37,3 @@ class Test_Compare_All_Elements(TestCase):
         tensor2_temp = -tensor2
         inds1, inds2 = compare_all_elements(tensor1_temp, tensor2_temp, int(n/10), data_split=1715)
         self.assertTrue(torch.all(torch.eq(tensor1[inds1]+tensor2[inds2], torch.ones(inds1.shape[0])*10)))
-
-if __name__ == '__main__':
-    unittest.main()
