@@ -1,1 +1,1 @@
-from compare_all_elements import compare_all_elements
+from .compare_all_elements import compare_all_elements
