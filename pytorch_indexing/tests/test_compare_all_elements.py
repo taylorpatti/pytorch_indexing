@@ -6,8 +6,6 @@ from pytorch_indexing import compare_all_elements
 import torch
 
 class Test_Compare_All_Elements(TestCase):
-    def test_testing(self):
-        self.assertTrue(True)
 
     def test_tensorA_equal_tensorB_data_split1(self):
         n = 1000
