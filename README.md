@@ -16,7 +16,7 @@ def compare_all_elements(tensorA, tensorB, max_val, data_split=1):
         compared_indsA:  indices of tensorA that match elements in tensorB (1D torch.tensor of ints, type torch.long)
  ```
 
-For example, in order to find the indices of matching values (as used in the torch_sparse sparse-sparse matrix multiplication function "spspmm"):
+For example, in order to find the indices of matching values (This is used in a function also defined also in this package, the sparse-sparse matrix multiplication function "spspmm". This function is called in torch_sparse as well and is what gives it its autograd support.):
 
 ```
 input:
@@ -44,4 +44,19 @@ indsA, indsB = pytorch_indexing.compare_all_elements(tempA, tempB, 10)
 output:
 tensor([2, 1])
 tensor([0, 1])
+```
+
+As mentioned above, this package also includes arguably the most pressing implementation of such a function, sparse-sparse matrix multiplication. This function is, at the moment of publication and to the best of the author's knowledge the only PyTorch autograd supporting sparse-sparse matrix multiplication function available.
+
+```
+input:
+torch.manual_seed(0)
+mat1 = torch.rand(4, 4).to_sparse()
+mat2 = torch.rand(4, 4).to_sparse()
+inds, vals = spspmm(mat1.indices(), mat1.values(), mat2.indices(), mat2.values(), 4, 4, 4, data_split=1)
+
+output:
+inds = tensor([[0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3],[0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]])
+vals = tensor([0.9314, 1.1983, 0.5096, 0.9379, 1.0183, 1.4320, 1.0417, 1.4943, 0.9696,1.2861, 0.7794, 1.0684, 0.3500, 0.5285, 0.5088, 0.6478]))
+
 ```
