@@ -5,7 +5,6 @@ import torch
 import pytorch_indexing as pytorch_indexing
 from torch_sparse import SparseTensor
 from torch_sparse import matmul
-from torch_sparse import coalesce
 
 def spspmm(indexA, valueA, indexB, valueB, m, k, n, data_split=1):
     """Matrix product of two sparse tensors. Both input sparse matrices need to
@@ -32,4 +31,4 @@ def spspmm(indexA, valueA, indexB, valueB, m, k, n, data_split=1):
         indsA, indsB = pytorch_indexing.compare_all_elements(colA, rowB, k, data_split=data_split)
         prod_inds = torch.cat((rowA[indsA].unsqueeze(0), colB[indsB].unsqueeze(0)), dim=0)
     prod_vals = valueA[indsA]*valueB[indsB]
-    return coalesce(prod_inds, prod_vals, m, n)
+    return torch_sparse.coalesce(prod_inds, prod_vals, m, n)
